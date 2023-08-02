@@ -8,7 +8,7 @@ import MonomeGrid from "monome-grid";
 let grid;
 let gridDirty = false;
 
-// no, you can't just fill this with the object
+// no, you can't just `fill` this with the object
 // because then every range is actually the same object in memory;
 // this will instantiate a new object for each range
 let ranges = Array(8).fill().map(r => ({

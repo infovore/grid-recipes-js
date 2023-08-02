@@ -17,7 +17,7 @@ Stylistic notes:
 - implement
   - state machine
   - meters
-- demonstrate extract-to-glass of richer grid object.
+- demonstrate extract-to-class of richer grid object.
 
 ## Installation
 
