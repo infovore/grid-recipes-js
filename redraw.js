@@ -11,11 +11,6 @@ let gridDirty = false;
 let show = [0, 0];
 let brightness = 15;
 
-// one liner for 8x16 array
-let gridData = Array(8)
-  .fill()
-  .map(() => Array(16).fill(0));
-
 const redrawClock = () => {
   if (gridDirty) {
     gridRedraw();
@@ -24,15 +19,14 @@ const redrawClock = () => {
 };
 
 const gridRedraw = () => {
-  for (let y = 0; y < 8; y++) {
-    for (let x = 0; x < 16; x++) {
-      if (x == show[0] && y == show[1]) {
-        gridData[y][x] = brightness;
-      } else {
-        gridData[y][x] = 0;
-      }
-    }
-  }
+  // one liner for making a 8x16 array
+  let gridData = Array(8).fill().map(() => Array(16).fill(0));
+
+  gridData = gridData.map(( cols, y ) => 
+    cols.map((_led,x) => 
+      (x == show[0] && y == show[1]) ? brightness : 0
+    )
+  )
   grid.refresh(gridData);
 };
 

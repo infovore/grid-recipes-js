@@ -26,11 +26,11 @@ const redrawClock = () => {
 
 const gridRedraw = () => {
   let gridData = emptyGridArray();
-  for (let y = 0; y < 8; y++) {
-    for (let x = 0; x < 16; x++) {
-      gridData[y][x] = toggled[y][x] ? brightness[y][x] : 0
-    }
-  }
+  gridData = gridData.map(( cols, y ) => 
+    cols.map((led,x) => 
+      toggled[y][x] ? brightness[y][x] : 0
+    )
+  )
   grid.refresh(gridData);
 };
 

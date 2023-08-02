@@ -25,11 +25,11 @@ const redrawClock = () => {
 
 const gridRedraw = () => {
   let gridData = emptyGridArray();
-  for (let y = 0; y < 8; y++) {
-    for (let x = 0; x < 16; x++) {
-      gridData[y][x] = momentaryKeys[y][x] ? brightness : 0
-    }
-  }
+  gridData = gridData.map(( cols, y ) => 
+    cols.map((led,x) => 
+      momentaryKeys[y][x] ? brightness : 0
+    )
+  )
   grid.refresh(gridData);
 };
 

@@ -6,9 +6,14 @@ One of the big changes in this port is that instead of using norns inbuilt `cloc
 
 One notable change is that the `monome-grid` library is very barebones: it connects to a grid via serialosc, and sets LEDs all at once. Some functionality that is built-in to the Lua `grid` object has to be implemented from scratch; I might extract these to a wrapper class or something if that becomes useful.
 
+Stylistic notes:
+
+- I like module-style imports
+- I'm fine with arrays being cols-rows (ie: `array[y][x]`)
+- I prefer functional approaches to updating data arrays (map, not for loops)
+
 ## TODO
 
-- flip this array to beeing array[x][y] everywhere
 - implement
   - state machine
   - switches
@@ -30,6 +35,7 @@ core concepts:
 
 - regular framerate grid redraw driven by `setInterval`.
 - gridDirty flag to prompt grid redraw
+- functional approaches to iteration (`map`)
 
 ## Momentary keys
 
