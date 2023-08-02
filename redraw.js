@@ -5,7 +5,9 @@
 
 import MonomeGrid from "monome-grid";
 
-//
+const ROWS = 8;  // change to 16 for 256 grid
+const COLS = 16;
+
 let grid;
 let gridDirty = false;
 let show = [0, 0];
@@ -20,7 +22,7 @@ const redrawClock = () => {
 
 const gridRedraw = () => {
   // one liner for making a 8x16 array
-  let gridData = Array(8).fill().map(() => Array(16).fill(0));
+  let gridData = Array(ROWS).fill().map(() => Array(COLS).fill(0));
 
   gridData = gridData.map(( cols, y ) => 
     cols.map((_led,x) => 

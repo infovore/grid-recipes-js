@@ -6,11 +6,14 @@
 
 import MonomeGrid from "monome-grid";
 
+const ROWS = 8;
+const COLS = 16;
+
 let grid;
 let gridDirty = false;
 let brightness = 15;
 
-const emptyGridArray = (x=16, y=8, data=0) => {
+const emptyGridArray = (x=COLS, y=ROWS, data=0) => {
   return Array(y).fill().map(() => Array(x).fill(data));
 }
 

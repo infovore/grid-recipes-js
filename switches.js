@@ -4,10 +4,13 @@
 
 import MonomeGrid from "monome-grid";
 
+const ROWS = 8;
+const COLS = 16;
+
 let grid;
 let gridDirty = false;
 // since we want rows to steal from each other, we only set up unique indices for columns
-let switches = Array(16).fill(7)
+let switches = Array(COLS).fill(7)
 
 const redrawClock = () => {
   if (gridDirty) {
@@ -17,7 +20,7 @@ const redrawClock = () => {
 };
 
 const gridRedraw = () => {
-  let gridData = Array(8).fill().map(() => Array(16).fill(0));
+  let gridData = Array(ROWS).fill().map(() => Array(COLS).fill(0));
 
   // forEach iterator has the signature (value, index)
   // which neatly maps to our (y,x)

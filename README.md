@@ -11,6 +11,7 @@ Stylistic notes:
 - I like module-style imports
 - I'm fine with arrays being cols-rows (ie: `array[y][x]`)
 - I prefer functional approaches to updating data arrays (map, not for loops)
+- all sketches use constants `ROWS` and `COLS` to determine the size of the grid. Set `ROWS` to 16 for your sketches to work on a 256/zero.
 
 ## TODO
 

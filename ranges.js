@@ -5,13 +5,16 @@
 
 import MonomeGrid from "monome-grid";
 
+const ROWS = 8;
+const COLS = 16;
+
 let grid;
 let gridDirty = false;
 
 // no, you can't just `fill` this with the object
 // because then every range is actually the same object in memory;
 // this will instantiate a new object for each range
-let ranges = Array(8).fill().map(r => ({
+let ranges = Array(ROWS).fill().map(r => ({
   x1: 0,
   x2: 0,
   held: 0
@@ -25,7 +28,7 @@ const redrawClock = () => {
 };
 
 const gridRedraw = () => {
-  let gridData = Array(8).fill().map(() => Array(16).fill(0));
+  let gridData = Array(ROWS).fill().map(() => Array(COLS).fill(0));
 
   ranges.forEach(( range, y ) => {
     for(let x = range.x1; x <= range.x2; x++) {
@@ -46,7 +49,7 @@ const gridKey = (x, y, s) => {
       ranges[y].x1 = x;
       ranges[y].x2 = x;
       if(difference > 0) { // and if there's a range
-        if(x + difference < 16) { // and if the new start point can accommodate the range...
+        if(x + difference < COLS) { // and if the new start point can accommodate the range...
           ranges[y].x2 = x + difference // set the range's start point to the selectedc key.
         } else { // otherwise, if there isn't enough room to move the range...
           // restore the original positions.

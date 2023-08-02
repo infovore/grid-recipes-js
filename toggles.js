@@ -6,16 +6,19 @@
 
 import MonomeGrid from "monome-grid";
 
+const ROWS = 8;
+const COLS = 16;
+
 let grid;
 let gridDirty = false;
 
-const emptyGridArray = (x=16, y=8, data=0) => {
+const emptyGridArray = (x=COLS, y=ROWS, data=0) => {
   return Array(y).fill().map(() => Array(x).fill(data));
 }
 
-let toggled = emptyGridArray(16,8,false);
-let brightness = emptyGridArray(16,8,15);
-let counter = emptyGridArray(16,8,null);
+let toggled = emptyGridArray(COLS,ROWS,false);
+let brightness = emptyGridArray(COLS,ROWS,15);
+let counter = emptyGridArray(COLS,ROWS,null);
 
 const redrawClock = () => {
   if (gridDirty) {
