@@ -1,4 +1,4 @@
-// based on https://monome.org/docs/norns/grid-recipes/#simple-redraw
+// based on https://monome.org/docs/norns/grid-recipes/#switches
 //
 // foundation for a step sequencer – 16 columns of switches, stealing vertically.
 
@@ -9,8 +9,6 @@ let gridDirty = false;
 // since we want rows to steal from each other, we only set up unique indices for columns
 let switches = Array(16).fill(7)
 
-console.log(switches)
-
 const redrawClock = () => {
   if (gridDirty) {
     gridRedraw();
@@ -20,8 +18,6 @@ const redrawClock = () => {
 
 const gridRedraw = () => {
   let gridData = Array(8).fill().map(() => Array(16).fill(0));
-
-  console.log(gridData)
 
   // forEach iterator has the signature (value, index)
   // which neatly maps to our (y,x)

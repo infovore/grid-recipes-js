@@ -16,7 +16,6 @@ Stylistic notes:
 
 - implement
   - state machine
-  - range
   - meters
 - demonstrate extract-to-glass of richer grid object.
 
@@ -76,3 +75,13 @@ try this:
 
 - add a moving playhead indicator
 - incorporate a long press to modify and display an additional table of switches
+
+## Range
+
+hold a grid key and press another in the same row to establish a range. pressing a single key will establish a new start point for the range, so long as the entire range can fit. establishing a negative range resets to 1.
+
+core concepts:
+
+- using arrays of objects to track state
+- using if/else conditions to define all possible interactions
+- using splat operator to copy objects
