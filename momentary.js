@@ -8,7 +8,6 @@ import MonomeGrid from "monome-grid";
 
 let grid;
 let gridDirty = false;
-let show = [0, 0];
 let brightness = 15;
 
 const emptyGridArray = (x=16, y=8, data=0) => {
