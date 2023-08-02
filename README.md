@@ -16,7 +16,6 @@ Stylistic notes:
 
 - implement
   - state machine
-  - switches
   - range
   - meters
 - demonstrate extract-to-glass of richer grid object.
@@ -64,3 +63,16 @@ core concepts:
 - clearing timeouts when they are no longer required
 - using meaningful `null`s
 - modifying existing states
+
+## Switches
+
+foundation for a step sequencer – 16 columns of switches, stealing vertically.
+
+core concepts:
+
+- using nested tables to segment the grid display
+
+try this:
+
+- add a moving playhead indicator
+- incorporate a long press to modify and display an additional table of switches
