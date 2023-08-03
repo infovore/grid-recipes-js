@@ -1,4 +1,4 @@
-// based on https://monome.org/docs/norns/grid-recipes/#toggles
+// based on https://monome.org/docs/norns/grid-recipes/#state-machine
 //
 // press an unlit key and it toggles on at half-bright. hold a half-bright key to make it full-bright. hold it again to return to half-bright. press a half-bright key to toggle it off.
 // 
@@ -17,7 +17,7 @@ const emptyGridArray = (x=COLS, y=ROWS, data=0) => {
 }
 
 let toggled = emptyGridArray(COLS,ROWS,false);
-let brightness = emptyGridArray(COLS,ROWS,15);
+let alt = emptyGridArray(COLS,ROWS,false);
 let counter = emptyGridArray(COLS,ROWS,null);
 
 const redrawClock = () => {
@@ -30,9 +30,13 @@ const redrawClock = () => {
 const gridRedraw = () => {
   let gridData = emptyGridArray();
   gridData = gridData.map(( cols, y ) => 
-    cols.map((led,x) => 
-      toggled[y][x] ? brightness[y][x] : 0
-    )
+    cols.map((led,x) => {
+      if(toggled[y][x] && !alt[y][x]) {
+        return 15;
+      } else if(alt[y][x]) {
+        return toggled[y][x] ? 0 : 15
+      }
+    })
   )
   grid.refresh(gridData);
 };
@@ -47,31 +51,27 @@ const gridKey = (x, y, s) => {
       clearTimeout(counter[y][x]);
       counter[y][x] = null
       shortPress(x,y)
+    } else {
+      longRelease(x,y)
     }
   }
   gridDirty = true;
 };
 
+const longRelease = (x,y) => {
+  alt[y][x] = false;
+  gridDirty = true
+}
+
 const shortPress = (x,y) => {
-  if(!toggled[y][x]) {
-    toggled[y][x] = true
-    brightness[y][x] = 8
-  } else if(toggled[y][x] && (brightness[y][x] == 8)) {
-    toggled[y][x] = false
-  }
+  toggled[y][x] = !toggled[y][x]
   gridDirty = true;
 }
 
 const longPress = (x,y) => {
-  // a long press waits for half a second
-  // then all this stuff happens
-  if(toggled[y][x]) {
-    // if it's still held down, toggle the brightness
-    brightness[y][x] = (brightness[y][x] == 15) ? 8 : 15
-  }
-  if(counter[y][x]) {
-    clearTimeout(counter[y][x])
-  }
+  // a long press fires after a 0.5s timeout
+  alt[y][x] = true
+  clearTimeout(counter[y][x])
   counter[y][x] = null
   gridDirty = true;
 }

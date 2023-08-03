@@ -1,4 +1,4 @@
-// based on https://monome.org/docs/norns/grid-recipes/#ranges
+// based on https://monome.org/docs/norns/grid-recipes/#range
 //
 // hold a grid key and press another in the same row to establish a range. pressing a single key will establish a new start point for the range, so long as the entire range can fit. establishing a negative range resets to 1.
 

@@ -64,6 +64,16 @@ core concepts:
 - using meaningful `null`s
 - modifying existing states
 
+## State machine
+
+sorta like toggles, but a long press momentarily inverts the state of the key whereas a short press flips the state. very useful for alt menus + modifiers and doesn’t require dedicating any real-estate to single-purpose “meta” keys.
+
+core concepts:
+
+- implementing a low-level state machine
+- using timeouts to trigger events 
+- clearing timeouts when they are no longer required
+
 ## Switches
 
 foundation for a step sequencer – 16 columns of switches, stealing vertically.
