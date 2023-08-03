@@ -20,6 +20,13 @@ let toggled = emptyGridArray(COLS,ROWS,false);
 let alt = emptyGridArray(COLS,ROWS,false);
 let counter = emptyGridArray(COLS,ROWS,null);
 
+const main = async () => {
+  grid = await MonomeGrid();
+  gridDirty = true;
+  setInterval(redrawClock, 1000 / 30);
+  grid.key(gridKey);
+};
+
 const redrawClock = () => {
   if (gridDirty) {
     gridRedraw();
@@ -58,11 +65,6 @@ const gridKey = (x, y, s) => {
   gridDirty = true;
 };
 
-const longRelease = (x,y) => {
-  alt[y][x] = false;
-  gridDirty = true
-}
-
 const shortPress = (x,y) => {
   toggled[y][x] = !toggled[y][x]
   gridDirty = true;
@@ -76,11 +78,9 @@ const longPress = (x,y) => {
   gridDirty = true;
 }
 
-const main = async () => {
-  grid = await MonomeGrid();
-  gridDirty = true;
-  setInterval(redrawClock, 1000 / 30);
-  grid.key(gridKey);
-};
+const longRelease = (x,y) => {
+  alt[y][x] = false;
+  gridDirty = true
+}
 
 main();

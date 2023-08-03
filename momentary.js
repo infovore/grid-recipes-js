@@ -19,6 +19,13 @@ const emptyGridArray = (x=COLS, y=ROWS, data=0) => {
 
 let momentaryKeys = emptyGridArray();
 
+const main = async () => {
+  grid = await MonomeGrid();
+  gridDirty = true;
+  setInterval(redrawClock, 1000 / 30);
+  grid.key(gridKey);
+};
+
 const redrawClock = () => {
   if (gridDirty) {
     gridRedraw();
@@ -39,13 +46,6 @@ const gridRedraw = () => {
 const gridKey = (x, y, s) => {
   momentaryKeys[y][x] = s;
   gridDirty = true;
-};
-
-const main = async () => {
-  grid = await MonomeGrid();
-  gridDirty = true;
-  setInterval(redrawClock, 1000 / 30);
-  grid.key(gridKey);
 };
 
 main();

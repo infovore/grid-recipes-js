@@ -13,6 +13,14 @@ let gridDirty = false;
 let show = [0, 0];
 let brightness = 15;
 
+const main = async () => {
+  grid = await MonomeGrid();
+  gridDirty = true;
+  setInterval(redrawClock, 1000 / 30);
+  grid.key(gridKey);
+};
+
+
 const redrawClock = () => {
   if (gridDirty) {
     gridRedraw();
@@ -37,13 +45,6 @@ const gridKey = (x, y, s) => {
     show = [x, y];
     gridDirty = true;
   }
-};
-
-const main = async () => {
-  grid = await MonomeGrid();
-  gridDirty = true;
-  setInterval(redrawClock, 1000 / 30);
-  grid.key(gridKey);
 };
 
 main();

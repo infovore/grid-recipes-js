@@ -20,6 +20,13 @@ let toggled = emptyGridArray(COLS,ROWS,false);
 let brightness = emptyGridArray(COLS,ROWS,15);
 let counter = emptyGridArray(COLS,ROWS,null);
 
+const main = async () => {
+  grid = await MonomeGrid();
+  gridDirty = true;
+  setInterval(redrawClock, 1000 / 30);
+  grid.key(gridKey);
+};
+
 const redrawClock = () => {
   if (gridDirty) {
     gridRedraw();
@@ -75,12 +82,5 @@ const longPress = (x,y) => {
   counter[y][x] = null
   gridDirty = true;
 }
-
-const main = async () => {
-  grid = await MonomeGrid();
-  gridDirty = true;
-  setInterval(redrawClock, 1000 / 30);
-  grid.key(gridKey);
-};
 
 main();

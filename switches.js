@@ -12,6 +12,13 @@ let gridDirty = false;
 // since we want rows to steal from each other, we only set up unique indices for columns
 let switches = Array(COLS).fill(7)
 
+const main = async () => {
+  grid = await MonomeGrid();
+  gridDirty = true;
+  setInterval(redrawClock, 1000 / 30);
+  grid.key(gridKey);
+};
+
 const redrawClock = () => {
   if (gridDirty) {
     gridRedraw();
@@ -36,13 +43,6 @@ const gridKey = (x, y, s) => {
     switches[x] = y
     gridDirty = true;
   }
-};
-
-const main = async () => {
-  grid = await MonomeGrid();
-  gridDirty = true;
-  setInterval(redrawClock, 1000 / 30);
-  grid.key(gridKey);
 };
 
 main();

@@ -2,7 +2,6 @@
 //
 // hold a grid key and press another in the same row to establish a range. pressing a single key will establish a new start point for the range, so long as the entire range can fit. establishing a negative range resets to 1.
 
-
 import MonomeGrid from "monome-grid";
 
 const ROWS = 8;
@@ -19,6 +18,13 @@ let ranges = Array(ROWS).fill().map(r => ({
   x2: 0,
   held: 0
 }))
+
+const main = async () => {
+  grid = await MonomeGrid();
+  gridDirty = true;
+  setInterval(redrawClock, 1000 / 30);
+  grid.key(gridKey);
+};
 
 const redrawClock = () => {
   if (gridDirty) {
@@ -68,13 +74,6 @@ const gridKey = (x, y, s) => {
     ranges[y].held = ranges[y].held - 1 // reduce held count by one
   }
   gridDirty = true;
-};
-
-const main = async () => {
-  grid = await MonomeGrid();
-  gridDirty = true;
-  setInterval(redrawClock, 1000 / 30);
-  grid.key(gridKey);
 };
 
 main();
