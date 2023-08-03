@@ -12,12 +12,13 @@ Stylistic notes:
 - I'm fine with arrays being cols-rows (ie: `array[y][x]`)
 - I prefer functional approaches to updating data arrays (map, not for loops)
 - all sketches use constants `ROWS` and `COLS` to determine the size of the grid. Set `ROWS` to 16 for your sketches to work on a 256/zero.
+- a few loops now take into account JS being 0-indexed (rather than 1-indexed)
+- JS objects don't quite behave like lua tables, and some of the examples are perhaps a little less elegant as a result (the `meters` example in particular can't just used an array with a named property at the end)
+- JS has no range primitive; I've used for loops rather than implementing a range function.
+- a few if statements use the fact that `1` is truthy in JS and `0` is falsey to make them more succinct
 
 ## TODO
 
-- implement
-  - state machine
-  - meters
 - demonstrate extract-to-class of richer grid object.
 
 ## Installation
@@ -96,3 +97,15 @@ core concepts:
 - using arrays of objects to track state
 - using if/else conditions to define all possible interactions
 - using splat operator to copy objects
+
+## Meters
+
+16 vertical meters, touch in a column to change its height. great for step sequencers or showing parameter + variable states.
+
+this deviates from the norns example by using touch to set height, rather than a norns encoder.
+
+core concepts:
+
+- more advanced object data structure
+- reverse for loop
+- ternary operator to set led data (see line 35)
